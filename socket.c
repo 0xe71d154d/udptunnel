@@ -191,7 +191,7 @@ int encryptpacket(char *buf, unsigned int buflen, char *serializedbuf, char *key
 		if (tx_key_used > tx_key_ref ) {
 			long int key_file_size = get_file_size(keyfile);
 			float key_presentage = (100.0*tx_key_used)/key_file_size;
-			tx_key_ref = tx_key_used + 500000;
+			tx_key_ref = tx_key_used + 500;
 			log_info("[%d] TX key used: %ld (of %ld) %.2f %%",getpid(),tx_key_used,key_file_size,key_presentage );
 			update_fifo(key_presentage);
 		}
@@ -234,7 +234,7 @@ int decryptpacket(char *buf,char *rxbuffer,int readbytes,char* keyfile, char* in
 	if (rx_key_used > rx_key_ref ) {	
 		long int key_file_size = get_file_size(keyfile);
 		float key_presentage = (100.0*rx_key_used)/key_file_size;
-		rx_key_ref = rx_key_used + 500000;
+		rx_key_ref = rx_key_used + 500;
 		log_info("[%d] RX key used: %ld (of %ld) %.2f %%",getpid(),rx_key_used,key_file_size,key_presentage );
 		update_rx_fifo(key_presentage);
 	}
